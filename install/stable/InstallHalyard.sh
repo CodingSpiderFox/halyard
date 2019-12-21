@@ -6,7 +6,7 @@ pushd $TEMPDIR
 
 echo "Downloading stable halyard installer..."
 
-curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/Installer.sh
+curl -O https://raw.githubusercontent.com/codingspiderfox/halyard/master/install/Installer.sh
 
 export RELEASE_TRACK="stable"
 
