@@ -207,7 +207,7 @@ function add_apt_repositories() {
 
 function install_java() {
   if [ -z "$DOWNLOAD" ]; then
-    apt-get install -y --force-yes openjdk-8-jdk
+    apt-get install -y openjdk-8-jdk
 
     # https://bugs.launchpad.net/ubuntu/+source/ca-certificates-java/+bug/983302
     # It seems a circular dependency was introduced on 2016-04-22 with an openjdk-8 release, where
@@ -229,7 +229,7 @@ function install_halyard() {
   if [ -n "$VERSION" ]; then
     installed_package="$package=$VERSION"
   fi
-  apt-get install -y --force-yes --allow-unauthenticated $installed_package
+  apt-get install -y --allow-unauthenticated $installed_package
   local apt_status=$?
   if [ $apt_status -ne 0 ]; then
     if [ -n "$DOWNLOAD" ] && [ "$apt_status" -eq "100" ]; then
