@@ -17,7 +17,7 @@ HALYARD_STARTUP_TIMEOUT_SECONDS=120
 if [ -z "$RELEASE_TRACK" ]; then
   >&2 echo "RELEASE_TRACK env var must be set (nightly or stable)"
   >&2 echo "Typically this script is invoked from a wrapper, e.g. "
-  >&2 echo "   https://raw.githubusercontent.com/spinnaker/halyard/master/install/stable/InstallHalyard.sh"
+  >&2 echo "   https://raw.githubusercontent.com/codingspiderfox/halyard/master/install/stable/InstallHalyard.sh"
   exit 1
 fi
 
@@ -239,10 +239,10 @@ function install_halyard() {
         version="${package}_${VERSION}_all.deb"
         debfile=$version
       else 
-        version=`curl $REPOSITORY_URL/dists/${DISTRIB_CODENAME}-${RELEASE_TRACK}/spinnaker/binary-amd64/Packages | grep "^Filename" | grep $package | awk '{print $2}' | awk -F'/' '{print $NF}' | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -1`
+        version=`curl $REPOSITORY_URL/dists/${DISTRIB_CODENAME}-${RELEASE_TRACK}/codingspiderfox/binary-amd64/Packages | grep "^Filename" | grep $package | awk '{print $2}' | awk -F'/' '{print $NF}' | sort -t. -k 1,1n -k 2,2n -k 3,3n | tail -1`
         debfile=`echo $version | awk -F "/" '{print $NF}'`
       fi
-      filelocation=`curl $REPOSITORY_URL/dists/${DISTRIB_CODENAME}-${RELEASE_TRACK}/spinnaker/binary-amd64/Packages | grep "^Filename" | grep $version | awk '{print $2}'`
+      filelocation=`curl $REPOSITORY_URL/dists/${DISTRIB_CODENAME}-${RELEASE_TRACK}/codingspiderfox/binary-amd64/Packages | grep "^Filename" | grep $version | awk '{print $2}'`
       curl -L -o /tmp/$debfile $REPOSITORY_URL/$filelocation
       dpkg -i /tmp/$debfile && rm -f /tmp/$debfile
     else
@@ -435,7 +435,7 @@ Halyard is now installed and running. To interact with it, use:
 $ hal --help
 
 More information can be found here:
-https://github.com/spinnaker/halyard/blob/master/README.md
+https://github.com/codingspiderfox/halyard/blob/master/README.md
 
 EOF
 fi
